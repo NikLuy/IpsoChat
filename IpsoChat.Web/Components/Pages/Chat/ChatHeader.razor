@@ -1,0 +1,21 @@
+
+<nav class="navbar navbar-expand-lg" style="background-color:#f2f2f2;">
+	<div class="container d-flex justify-content-between p-2">
+		<div class="d-flex">
+			<a class="navbar-brand fw-bold " href="/">
+				<h2>Ipso Wissensdatenbank</h2>
+			</a>
+			<button class="btn btn-primary" @onclick="@OnNewChat">
+				Neue Anfrage
+			</button>
+		</div>
+		<div class="">
+			<img src="ipso-logo-lang-rgb_1.svg" height="120" width="250" />
+		</div>
+	</div>
+</nav>
+
+@code {
+	[Parameter]
+	public EventCallback OnNewChat { get; set; }
+}

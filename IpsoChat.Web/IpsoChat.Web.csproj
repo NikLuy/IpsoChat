@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>fe7c574c-f217-4d1a-a0e5-953d86792226</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.3.0-beta.1" />
+    <PackageReference Include="Aspire.Azure.AI.OpenAI" Version="9.4.0-preview.1.25378.8" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.9.0-preview.1.25458.4" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="9.9.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.61.0" />
+    <PackageReference Include="PdfPig" Version="0.1.10" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="Aspire.Qdrant.Client" Version="9.4.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Qdrant" Version="1.61.0-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IpsoChat.ServiceDefaults\IpsoChat.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Data\SYEN\" />
+  </ItemGroup>
+
+</Project>

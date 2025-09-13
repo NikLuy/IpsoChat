@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="IpsoChat.AppHost/IpsoChat.AppHost.csproj" />
+  <Project Path="IpsoChat.ServiceDefaults/IpsoChat.ServiceDefaults.csproj" />
+  <Project Path="IpsoChat.Web/IpsoChat.Web.csproj" />
+</Solution>

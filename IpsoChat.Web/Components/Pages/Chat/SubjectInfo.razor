@@ -1,0 +1,50 @@
+@using IpsoChat.Web.Services
+@using IpsoChat.Web.Services.Ingestion
+@inject IngestionProgressService ProgressService
+@inject IWebHostEnvironment Environment
+@implements IDisposable
+
+@if (progress.TotalDocuments > 0 && !progress.IsCompleted)
+{
+    <div class="ingestion-progress page-width">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: @(progress.ProgressPercentage)%"></div>
+        </div>
+        <div class="progress-text">
+            Verarbeite Dokumente: @progress.ProcessedDocuments / @progress.TotalDocuments
+            @if (progress.RemainingDocuments > 0)
+            {
+                <span class="remaining">(@progress.RemainingDocuments verbleibend)</span>
+            }
+        </div>
+        @if (!string.IsNullOrEmpty(progress.CurrentDocument))
+        {
+            <div class="current-document">
+                Aktuell: @Path.GetFileName(progress.CurrentDocument)
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private IngestionProgress progress = new();
+
+    protected override void OnInitialized()
+    {
+        ProgressService.ProgressChanged += OnProgressChanged;
+        progress = ProgressService.CurrentProgress;
+    }
+
+   
+
+    private void OnProgressChanged(IngestionProgress newProgress)
+    {
+        progress = newProgress;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ProgressService.ProgressChanged -= OnProgressChanged;
+    }
+}
