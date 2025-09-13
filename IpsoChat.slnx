@@ -1,4 +1,15 @@
 <Solution>
+  <Folder Name="/Doku/" />
+  <Folder Name="/Doku/Images/">
+    <File Path="Doku/Images/DevSettings.png" />
+    <File Path="Doku/Images/generate-new-token.png" />
+    <File Path="Doku/Images/GitToken1.png" />
+    <File Path="Doku/Images/GitToken5.png" />
+    <File Path="Doku/Images/GitToken6.png" />
+    <File Path="Doku/Images/GitToken7.png" />
+    <File Path="Doku/Images/GitToken8.png" />
+    <File Path="Doku/Images/personal-access-tokens.png" />
+  </Folder>
   <Project Path="IpsoChat.AppHost/IpsoChat.AppHost.csproj" />
   <Project Path="IpsoChat.ServiceDefaults/IpsoChat.ServiceDefaults.csproj" />
   <Project Path="IpsoChat.Web/IpsoChat.Web.csproj" />
