@@ -45,13 +45,13 @@ To use GitHub Models for AI inference, you need to create a Personal Access Toke
 5. Click on **Personal access tokens**
 6. Select **Tokens (classic)**
 
-![Personal Access Tokens Navigation](Doku/images/personal-access-tokens.png)
+![Personal Access Tokens Navigation](Doku/Images/personal-access-tokens.png)
 
 #### Step 2: Generate New Token
 1. Click the **Generate new token** dropdown button
 2. Choose **Generate new token (classic)** for general use
 
-![Generate New Token Options](Doku/images/generate-new-token.png)
+![Generate New Token Options](Doku/Images/generate-new-token.png)
 
 3. Fill out the token details:
    - **Note**: Give your token a descriptive name (e.g., "IpsoChat AI Models")
