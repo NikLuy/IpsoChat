@@ -1,19 +1,36 @@
-using Microsoft.Extensions.AI;
 using IpsoChat.Web.Components;
+using IpsoChat.Web.Models;
 using IpsoChat.Web.Services;
 using IpsoChat.Web.Services.Ingestion;
+using Microsoft.Extensions.AI;
 using OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
-var openai = builder.AddAzureOpenAIClient("openai");
-openai.AddChatClient("gpt-4o-mini")
-    .UseFunctionInvocation()
-    .UseOpenTelemetry(configure: c =>
-        c.EnableSensitiveData = builder.Environment.IsDevelopment());
-openai.AddEmbeddingGenerator("text-embedding-3-small");
+// Load API settings from configuration with host override support
+var apiSettings = builder.Configuration.GetSection("ApiSettings").Get<ApiSettings>() ?? new ApiSettings();
+
+// Configure AI client based on ApiSettings with backward compatible connection string names
+if (apiSettings.Api == ApiType.OpenAI)
+{
+    var openaiClient = builder.AddOpenAIClient("openai-api");
+    openaiClient.AddChatClient(apiSettings.OpenAIModel)
+        .UseFunctionInvocation()
+        .UseOpenTelemetry(configure: c =>
+            c.EnableSensitiveData = builder.Environment.IsDevelopment());
+    openaiClient.AddEmbeddingGenerator(apiSettings.EmbeddingModel);
+}
+else // AzureOpenAI
+{
+    var azureOpenaiClient = builder.AddAzureOpenAIClient("openai"); // Keep "openai" for backward compatibility
+    azureOpenaiClient.AddChatClient(apiSettings.OpenAIModel)
+        .UseFunctionInvocation()
+        .UseOpenTelemetry(configure: c =>
+            c.EnableSensitiveData = builder.Environment.IsDevelopment());
+    azureOpenaiClient.AddEmbeddingGenerator(apiSettings.EmbeddingModel);
+}
 
 builder.AddQdrantClient("vectordb");
 builder.Services.AddQdrantCollection<Guid, IngestedChunk>("data-defaultchat-chunks");
